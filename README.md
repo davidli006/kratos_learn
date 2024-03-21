@@ -7,8 +7,14 @@
 - go get github.com/golang/protobuf/protoc-gen-go
 
 ## kratos安装
-- go get -u github.com/go-kratos/kratos/v2
+- go install github.com/go-kratos/kratos/cmd/kratos/v2@latest
 
-
+## 创建项目
+- cd ./backend
+- kratos new verifyCode
+- go mod tidy
+- go get github.com/google/wire/cmd/wire
+- go generate ./...
+- 
 
 
