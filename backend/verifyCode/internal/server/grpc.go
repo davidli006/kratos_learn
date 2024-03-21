@@ -1,6 +1,8 @@
 package server
 
 import (
+	"math/rand"
+	"time"
 	v1 "verifyCode/api/helloworld/v1"
 	"verifyCode/api/verifyCode"
 	"verifyCode/internal/conf"
@@ -18,7 +20,7 @@ func NewGRPCServer(
 	verifyCodeService *service.VerifyCodeService,
 	logger log.Logger,
 ) *grpc.Server {
-
+	rand.Seed(time.Now().UnixNano())
 	var opts = []grpc.ServerOption{
 		grpc.Middleware(
 			recovery.Recovery(),
