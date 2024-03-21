@@ -15,6 +15,18 @@
 - go mod tidy
 - go get github.com/google/wire/cmd/wire
 - go generate ./...
-- 
+
+## 添加代码
+- kratos proto add api/verifyCode/verifyCode.proto
+- kratos proto client api\verifyCode\verifyCode.proto
+- kratos proto server api\verifyCode\verifyCode.proto -t .\internal\server 
+
+## 项目注册
+- internal/service/service.go 注册 
+- ProviderSet = wire.NewSet(NewGreeterService, NewVerifyCodeService) 构建函数
+- internal/server/grpc 添加参数 完成注册
+- verifyCodeService *service.VerifyCodeService 15行
+- verifyCode.RegisterVerifyCodeServer(srv, verifyCodeService) 39 行
+- 重新执行 go generate ./...
 
 
