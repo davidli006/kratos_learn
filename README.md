@@ -11,7 +11,7 @@
 
 ## 创建项目
 - cd ./backend
-- kratos new verifyCode
+- kratos new verifyCode -r https://gitee.com/go-kratos/kratos-layout.git
 - go mod tidy
 - go get github.com/google/wire/cmd/wire
 - go generate ./...
@@ -28,5 +28,10 @@
 - verifyCodeService *service.VerifyCodeService 15行
 - verifyCode.RegisterVerifyCodeServer(srv, verifyCodeService) 39 行
 - 重新执行 go generate ./...
+
+## 再调用服务中生成存根
+- customer 中添加verifyCode.proto
+- kratos proto client ./api/verifyCode/verifyCode.proto
+- 
 
 
