@@ -29,9 +29,14 @@ func wireApp(confServer *conf.Server, confData *conf.Data, logger log.Logger) (*
 	if err != nil {
 		return nil, nil, err
 	}
-	greeterRepo := data.NewGreeterRepo(dataData, logger)
-	greeterUsecase := biz.NewGreeterUsecase(greeterRepo, logger)
-	realWorldService := service.NewRealWorldService(greeterUsecase)
+	userRepo := data.NewUserRepo(dataData, logger)
+	profileRepo := data.NewProfileRepo(dataData, logger)
+	userUsecase := biz.NewUserUsecase(userRepo, profileRepo, logger)
+	articleRepo := data.NewArticleRepo(dataData, logger)
+	commentRepo := data.NewCommentRepo(dataData, logger)
+	tagRepo := data.NewTagRepo(dataData, logger)
+	socialUsecase := biz.NewSocialUsecase(articleRepo, commentRepo, tagRepo, logger)
+	realWorldService := service.NewRealWorldService(userUsecase, socialUsecase)
 	grpcServer := server.NewGRPCServer(confServer, realWorldService, logger)
 	httpServer := server.NewHTTPServer(confServer, realWorldService, logger)
 	app := newApp(logger, grpcServer, httpServer)
