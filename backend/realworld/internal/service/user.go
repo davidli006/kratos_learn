@@ -8,6 +8,8 @@ import (
 func (s *RealWorldService) Login(ctx context.Context, req *pb.LoginRequest) (*pb.UserReplay, error) {
 	return &pb.UserReplay{User: &pb.UserReplay_User{
 		Username: "kakaxi",
+		Id:       1,
+		IsDelete: 2,
 	}}, nil
 }
 

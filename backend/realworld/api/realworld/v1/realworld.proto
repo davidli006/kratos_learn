@@ -274,6 +274,8 @@ message UserReplay {
     string username = 3;
     string bio = 4;
     string image = 5;
+    int64 Id = 6;
+    int64 IsDelete = 7;
   }
 
   User user = 1;
